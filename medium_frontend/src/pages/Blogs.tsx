@@ -7,7 +7,7 @@ export const Blogs = () => {
 
   if(loading){
     return <div>
-      loading..
+      Loading..
     </div>
   }
 
