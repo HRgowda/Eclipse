@@ -7,10 +7,10 @@ export const Blogs = () => {
 
   if(loading){
     return <div>
-      loading...
+      loading..
     </div>
   }
-  
+
   return  <div>
     <AppBar></AppBar>
     <div className="flex justify-center">
