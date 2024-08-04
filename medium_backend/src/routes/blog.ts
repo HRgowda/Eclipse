@@ -96,14 +96,15 @@ blogRouter.put('/', async (c) =>{
   })
 });
 
+// To get back the data from the user.
 blogRouter.get('/bulk', async (c) =>{
   const prisma = new PrismaClient({
     // We can also add @ts-ignore so if there is any error in the next line then it will be ignored.
     datasourceUrl: c.env.DATABASE_URL // this is the environment variable.
   }).$extends(withAccelerate())
 
-  const getBUlk = await prisma.post.findMany();
-  return c.json(getBUlk)
+  const getBulk = await prisma.post.findMany();
+  return c.json(getBulk)
 })
 
 blogRouter.get('/:id', async (c) =>{

@@ -1,12 +1,13 @@
 import { Avatar } from "./BlogCard"
 
 export const AppBar = () => {
-  return <div className="flex justify-between border-b px-10">
-    <div>
+  return <div className="px-10 py-4 flex justify-between border-b">
+    <div className="flex flex-col justify-center font-semibold">
       Eclipse
     </div>
+
     <div>
-      <Avatar name="Hemanth Gowda"></Avatar>
+      <Avatar size={"big"} name="Hemanth Gowda"></Avatar>
     </div>
     
   </div>
