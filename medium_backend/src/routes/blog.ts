@@ -103,7 +103,19 @@ blogRouter.get('/bulk', async (c) =>{
     datasourceUrl: c.env.DATABASE_URL // this is the environment variable.
   }).$extends(withAccelerate())
 
-  const getBulk = await prisma.post.findMany();
+  const getBulk = await prisma.post.findMany({
+    select:{
+      title: true,
+      content: true,
+      id: true,
+      published: true,
+      author:{
+        select:{
+          name: true
+        }
+      }
+    }
+  });
   return c.json(getBulk)
 })
 

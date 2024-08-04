@@ -10,7 +10,11 @@ export const useBlogs = () => {
 
 {/* We cant use async inside useEffect so define a function outside the useEffect and call inside it or just do with PROIMISES */}
   useEffect(()=>{
-    axios.get(`${Backend_Url}/api/v1/blog/bluk`)
+    axios.get(`${Backend_Url}/api/v1/blog/bluk`,{
+      headers:{
+        Authorization : localStorage.getItem("token")
+      }
+    })
       .then(response => {
         setBlogs(response.data)
         setLoading(false)

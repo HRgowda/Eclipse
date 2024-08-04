@@ -16,7 +16,8 @@ export const Auth = ({type}:{type: "signup" | "signin"}) =>{
   async function SendRequest() {
     try{
       const response = await axios.post(`${Backend_Url}/api/v1/user/${type === "signup" ? "signup" : "signin"}`, postInputs)
-      const jwt = response.data;
+      {/* Here make sure you get response.data.token because in localstorage u can only store string but if u give response.data then u are trying to store entire object which is a bad solution */}
+      const jwt = response.data.token;
       localStorage.setItem("token", jwt);
       navigate("/blogs")
     } catch(e){
