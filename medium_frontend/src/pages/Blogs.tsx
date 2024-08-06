@@ -1,6 +1,6 @@
 import { BlogCard } from "../components/BlogCard";
 import { AppBar } from "../components/AppBar";
-import { useBlogs } from "../components/hooks";
+import { useBlogs } from "../components/hooks/index";
 
 export const Blogs = () => {
   const { loading, blogs } = useBlogs();
@@ -14,15 +14,10 @@ export const Blogs = () => {
       <AppBar />
       <div className="flex justify-center">
         <div className="max-w-lg">
-          {blogs && blogs.map(blog => (
-            <BlogCard
-              key={blog.title} // Ensure each BlogCard has a unique key
-              authorName={blog.author.name}
-              title={blog.title}
-              content={blog.content}
-              publishedDate="August 2, 2024"
-            />
-          ))}
+          {blogs.map(blog=>(
+            <BlogCard authorName={blog.author.name} title={blog.title} content={blog.content} publishedDate={blog.publishedDate}></BlogCard>
+          ))
+          }
         </div>
       </div>
     </div>
