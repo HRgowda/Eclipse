@@ -63,8 +63,8 @@ blogRouter.post('/', async (c) => {
       data: {
         title: body.title,
         content: body.content,
-        published: body.published,
-        authorid: userId // Ensure field name matches Prisma schema
+        publishedDate: body.publishedDate,
+        authorId: userId // Ensure field name matches Prisma schema
       }
     });
 
@@ -88,7 +88,7 @@ blogRouter.put('/', async (c) =>{
       data:{
         title: body.title,
         content: body.content,
-        published: body.published }
+        publishedDate: body.publishedDate }
   })
   c.status(200);
   return c.json({
@@ -108,7 +108,7 @@ blogRouter.get('/bulk', async (c) =>{
       title: true,
       content: true,
       id: true,
-      published: true,
+      publishedDate: true,
       author:{
         select:{
           name: true
