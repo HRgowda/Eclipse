@@ -3,7 +3,7 @@ import axios from "axios";
 import { Backend_Url } from "../../Url";
 
 // Define the Blog interface
-interface Blog {
+export interface Blog {
   title: string;
   content: string;
   id: string;
@@ -11,6 +11,24 @@ interface Blog {
   author: {
     name: string;
   };
+}
+{/* useBlog -> for atoms/selector family */}
+export const useBlog = ({id}:{ id:String })=>{
+  const [loading, setLoading] = useState(true);
+  const [blog, setBlog] = useState<Blog>();
+
+  useEffect(() => {
+    axios.get(`${Backend_Url}/api/v1/blog/${id}`,{
+      headers:{
+        Authorization: localStorage.getItem("token") || ""
+      }
+    }).then(response=>{
+      setBlog(response.data.post)
+      setLoading(false)
+    })
+  },[id])
+
+  return { loading, blog };
 }
 
 // Custom hook for fetching blogs data
