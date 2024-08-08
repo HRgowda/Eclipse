@@ -19,9 +19,11 @@ export const FullBlog = ({ blog }:{blog:Blog}) =>{
           </div>
         </div>
 
-        <div className=" col-span-4 px-10 ">
-          Author
-          <div className="flex">
+        <div className=" col-span-4 px-10">
+          <div className="font-semibold">
+            Author
+          </div>
+          <div className="flex py-3">
             <div className="pr-2 flex flex-col justify-center">
               <Avatar name={blog.author.name || "Anonymous"} size="big"></Avatar>
             </div>
