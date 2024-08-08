@@ -26,6 +26,6 @@ model Post {
   authorId  String
   title     String
   content   String
-  publishedDate String 
+  publishedDate DateTime @default(now()) 
   author    User     @relation(fields: [authorId], references: [id])
 }
