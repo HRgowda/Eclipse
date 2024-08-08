@@ -1,12 +1,22 @@
 import { BlogCard } from "../components/BlogCard";
 import { AppBar } from "../components/AppBar";
 import { useBlogs } from "../components/hooks/index";
+import { BlogSkeleton } from "../components/BlogSkeleton";
 
 export const Blogs = () => {
   const { loading, blogs } = useBlogs();
 
   if (loading) {
-    return <div>Loading..</div>;
+    return <div>
+      <div>
+        <AppBar></AppBar>
+      </div>
+      <BlogSkeleton></BlogSkeleton>
+      {/* <BlogSkeleton></BlogSkeleton>
+      <BlogSkeleton></BlogSkeleton>
+      <BlogSkeleton></BlogSkeleton>
+      <BlogSkeleton></BlogSkeleton> */}
+    </div>;
   }
 
   return (
