@@ -13,17 +13,27 @@ export const Auth = ({type}:{type: "signup" | "signin"}) =>{
     password: ""
   })
 
-  async function SendRequest() {
-    try{
-      const response = await axios.post(`${Backend_Url}/api/v1/user/${type === "signup" ? "signup" : "signin"}`, postInputs)
-      {/* Here make sure you get response.data.token because in localstorage u can only store string but if u give response.data then u are trying to store entire object which is a bad solution */}
+  const SendRequest = async () => {
+    try {
+      const response = await axios.post(`${Backend_Url}/api/v1/user/${type === "signup" ? "signup" : "signin"}`, postInputs, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+  
       const jwt = response.data.token;
-      localStorage.setItem("token", jwt);
-      navigate("/blogs")
-    } catch(e){
-      alert("Error while signing up!")
+  
+      if (jwt) {
+        localStorage.setItem("token", jwt);
+        navigate("/blogs");  // Ensure `navigate` is correctly defined, probably from `useNavigate` hook
+      } else {
+        throw new Error("Token not received");
+      }
+    } catch (e) {
+      console.error("Error while signing up:", e);
+      alert("Error while signing up!");
     }
-  }
+  };
 
   return (
     <div className="h-screen flex justify-center flex-col">
