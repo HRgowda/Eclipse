@@ -13,10 +13,12 @@ export const Auth = ({type}:{type: "signup" | "signin"}) =>{
     password: ""
   })
 
+{/* use 'Content-Type': 'application/json' so that it Specifies that the request body is JSON, so the server can parse it correctly. */}
   const SendRequest = async () => {
     try {
       const response = await axios.post(`${Backend_Url}/api/v1/user/${type === "signup" ? "signup" : "signin"}`, postInputs, {
         headers: {
+          
           'Content-Type': 'application/json',
         },
       });
