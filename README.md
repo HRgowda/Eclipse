@@ -1,3 +1,3 @@
-# Welcome to Eclipse
+# Welcome to MindCraft
 
 This is a fully functional dynamic blogging website.
