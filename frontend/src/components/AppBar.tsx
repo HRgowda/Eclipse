@@ -1,6 +1,16 @@
+import { useEffect, useState } from "react";
 import { Avatar } from "./BlogCard"
 import {Link} from "react-router-dom"
+
 export const AppBar = () => {
+  const [name, setName] = useState("")
+
+  useEffect(()=>{
+    const name = localStorage.getItem("name");
+    if(name){
+      setName(name)
+    }
+  }, [])
 
   return <div className="px-10 py-4 flex justify-between border-b">
     <Link to={'/blogs'} className="flex flex-col justify-center font-bold cursor-pointer ">
@@ -24,7 +34,7 @@ export const AppBar = () => {
       
       </Link>
 
-      <Avatar size={"big"} name={"Hemanth Gowda"}></Avatar>
+      <Avatar size={"big"} name={name || "Anonymous"}></Avatar>
     </div>    
   </div>
 } 

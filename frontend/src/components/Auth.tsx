@@ -24,10 +24,12 @@ export const Auth = ({type}:{type: "signup" | "signin"}) =>{
       });
   
       const jwt = response.data.token;
+      const name = response.data.name;
   
       if (jwt) {
         localStorage.setItem("token", jwt);
-        navigate("/blogs");  // Ensure `navigate` is correctly defined, probably from `useNavigate` hook
+        localStorage.setItem("name", name);
+        navigate(`/blogs`);  // Ensure `navigate` is correctly defined, probably from `useNavigate` hook
       } else {
         throw new Error("Token not received");
       }
@@ -75,6 +77,7 @@ export const Auth = ({type}:{type: "signup" | "signin"}) =>{
                   password:e.target.value
                 })
               }}></LabelledInput>
+
             <button  onClick={SendRequest} type="button" className="mt-5 w-full text-white bg-black hover:bg-black-400 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2  focus:outline-none ">{type === "signup"? "Sign Up" : "Sign In"}</button>
             </div>
          </div>
